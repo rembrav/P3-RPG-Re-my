@@ -1,6 +1,7 @@
-//
 //  Weapon.swift
-//  
+//  P3RPG
+//  Created by REMY on 22/11/2019.
+//  Copyright © 2019 RPELG. All rights reserved.
 
 import Foundation
 
@@ -26,7 +27,7 @@ final class Weapon {
             self.action = .heal(value: 20)
         }
     }
-
+    /// function who verify if random weapon is compatible with character selected
     func isCompatible(with type: CharacterType) -> Bool {
         switch self.action {
         case .damage:

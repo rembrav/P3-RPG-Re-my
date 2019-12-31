@@ -1,10 +1,10 @@
-//
 //  Character.swift
-//  
+//  P3RPG
+//  Created by REMY on 22/11/2019.
+//  Copyright © 2019 RPELG. All rights reserved.
 
 import Foundation
 
-// Character specifications
 final class Character {
     
     // MARK: - Properties
@@ -58,7 +58,7 @@ final class Character {
     
     // MARK: - Actions
     
-    ///
+    /// function that applies damage or healing during a combat phase
     func updateLife(with action: ActionType) {
         switch action {
         case .damage(value: let value):
@@ -75,7 +75,7 @@ final class Character {
             }
         }
     }
-
+    /// function who permit to replace character weapon with the random weapon
     func updateWeapon(with weapon: Weapon) {
         self.weapon = weapon
     }

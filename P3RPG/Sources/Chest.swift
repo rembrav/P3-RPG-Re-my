@@ -1,10 +1,7 @@
-//
 //  Chest.swift
 //  P3RPG
-//
 //  Created by REMY on 19/12/2019.
-//  Copyright © 2019 RPEG. All rights reserved.
-//
+//  Copyright © 2019 RPELG. All rights reserved.
 
 import Foundation
 /// class Chest : random weapon appears when player is gonna to choose his fighter

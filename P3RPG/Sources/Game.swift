@@ -1,6 +1,7 @@
-//
 //  Game.swift
-//
+//  P3RPG
+//  Created by REMY on 22/11/2019.
+//  Copyright © 2019 RPELG. All rights reserved.
 
 final class Game {
     
@@ -13,6 +14,7 @@ final class Game {
     var round = 0
     
     // MARK: - Start
+    
     /// main progress function of the Game load main functions
     func start() {
         print("\n\nWelcome into this New Fighting Game !!!!\n")
@@ -23,6 +25,7 @@ final class Game {
     }
     
     // MARK: - Private
+    
     /// loop function create player while count players inferior maxplayers game by team
     private func settings() {
         repeat {
@@ -59,7 +62,7 @@ final class Game {
             } else {
                 targetedCharacter = selectCharacter(from: player2.team)
                 print("\n\n\n\(fighterChosen.name.uppercased()) is going to attack the \(targetedCharacter.name.uppercased()) target :\n")
-              }
+            }
             print(targetedCharacter.description)
             print("\n-----Characters are Fighting------\n")
             print("\n---------⚔️🤺🔪💣💥😱☠️-------------\n")
@@ -140,7 +143,6 @@ final class Game {
         team.enumerated().forEach {
             print ("\($0):\n \($1.description) \n")
         }
-        
         repeat {
             print("Be carrefull you have to choose a character ALIVE:")
             if let stringChoice = readLine(), let index = Int(stringChoice), index <= team.count {
