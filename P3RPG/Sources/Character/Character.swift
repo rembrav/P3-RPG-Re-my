@@ -16,17 +16,19 @@ final class Character {
     private(set) var lifePoints: Int
     private(set) var maxLifePoints: Int
     
+    /// Calculated property to check if character is Alive
     var isAlive: Bool {
         return lifePoints > 0
     }
-    
+    /// Calcultated property to describe character
     var description: String {
         return "\(self.type) named \(self.name.uppercased()) armed with \(self.weapon.name.uppercased()) \(self.weapon.action) \(self._isAlive)"
     }
+    /// Calcultated property to describe character after fight
     var descriptionAfterFight: String {
         return "\(self.type) named \(self.name.uppercased()) \(self._isAlive)"
     }
-    
+    /// computed property with ternary operator to check if character is alive or dead
     private var _isAlive: String {
         return isAlive ? "has \(lifePoints) lifePoints" : "is ☠️ DEAD 💀"
     }
@@ -56,6 +58,7 @@ final class Character {
     
     // MARK: - Actions
     
+    ///
     func updateLife(with action: ActionType) {
         switch action {
         case .damage(value: let value):
