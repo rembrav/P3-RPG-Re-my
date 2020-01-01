@@ -17,8 +17,10 @@ final class Game {
     
     /// main progress function of the Game load main functions
     func start() {
-        print("\n\nWelcome into this New Fighting Game !!!!\n")
-        print("\n——————————— Prepare to fight 🔫💣🔪👊 ———————————\n")
+        print("------------------------------------------------------------")
+        print("\n\nWelcome into this New Fighting Game !!!!\n\n")
+        print("------------------------------------------------------------")
+        print("\n\n——————————— Prepare to fight 🔫💣🔪👊 ———————————\n")
         settings()
         play()
         end()
@@ -29,7 +31,7 @@ final class Game {
     /// loop function create player while count players inferior maxplayers game by team
     private func settings() {
         repeat {
-            print("\n\nHELLO TO YOU NEW PLAYER!\n\n")
+            print("\n\nNICE TO WELCOME YOU NEW PLAYER!\n\n")
             let name = createName()
             print("\n\nWelcome \(name.uppercased())")
             let team = createTeam()
@@ -51,7 +53,7 @@ final class Game {
             print("\nPlease \(player2.name.uppercased()) select a character in your team:\n\n")
             
             if let randomWeapon = Chest.generateRandomWeapon(), randomWeapon.isCompatible(with: fighterChosen.type) {
-                print("You are Lucky a Chest with a Random Weapon will appear, maybe it's gonna Help You...\n")
+                print("🎁 You are Lucky a Chest with a Random Weapon will appear, maybe it's gonna Help You...🎁\n")
                 print("The random Weapon that you have now is \(randomWeapon.name)\n")
                 fighterChosen.updateWeapon(with: randomWeapon)
             }
@@ -98,7 +100,7 @@ final class Game {
         var teamCharacters: [Character] = []
         var numbChar = 3
         repeat {
-            numbChar != 1 ? print("\nNow! you have to choose \(numbChar) different characters left to build your team: \n\n")
+            numbChar != 1 ? print("\nNow! you have to choose and name one by one \(numbChar) different characters left to build your team: \n\n")
                 : print("\nNow! you have to choose \(numbChar) last character left to build your team: \n\n")
             print("""
                             ----Welcome to your Team Builder----\n
@@ -121,7 +123,7 @@ final class Game {
                     print("\n\nWelcome \(name.uppercased())")
                     print("\nYou have now a \(type) in your Team!!!")
                 } else {
-                    print("\n⛔️Sorry but you have already chose this character type! they must all be different⛔️")
+                    print("\n⛔️Sorry but you have already chosen this character type! they must all be different⛔️\n\n")
                 }
             }
         } while teamCharacters.count < maxCharacters
