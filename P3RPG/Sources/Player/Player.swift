@@ -20,20 +20,20 @@ final class Player {
     }
     
     // MARK: - Actions
-    
+    // functions presents teams during game
     func teamPresentation() {
         team.forEach { (character) in
             print("You have a hero named",character.name.uppercased(),"who is a", character.type,"armed by a", character.weapon.name.uppercased())
         }
     }
     func endTeamsDescription() {
-        print("Your characteristics team are:\n")
+        print("Your team statistics are:\n")
         team.forEach { (character) in
             if character.type != .therapist {
-                print("A hero named",character.name.uppercased(),"who is a", character.type,"armed by a", character.weapon.name.uppercased(),"with",character.lifePoints,"lifepoints")
+                print("Your hero named",character.name.uppercased(),"who is a", character.type,"armed by a", character.weapon.name.uppercased(),"with",character.lifePoints,"lifepoints")
             }
             else {
-                print("A hero named",character.name.uppercased(),"who is a", character.type,"armed by a", character.weapon.name.uppercased(),"with",character.lifePoints,"lifepoints but can't ATTACK")
+                print("Your hero named",character.name.uppercased(),"who is a", character.type,"armed by a", character.weapon.name.uppercased(),"with",character.lifePoints,"lifepoints but can't ATTACK")
             }
             
         }
