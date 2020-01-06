@@ -14,6 +14,7 @@ final class Weapon {
     
     // MARK: - Init
     
+    /// Constructor with switch case WeaponType depends actionType who depends value of damage or heal
     init(type: WeaponType) {
         self.name = type.stringValue
         switch type {

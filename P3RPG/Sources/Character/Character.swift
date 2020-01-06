@@ -38,7 +38,7 @@ final class Character {
     init(name: String, type: CharacterType) {
         self.name = name
         self.type = type
-        
+        /// switch on CharacterType cases create personnal lifePoints and Weapons
         switch type {
         case .giant:
             self.maxLifePoints = 100
@@ -58,7 +58,7 @@ final class Character {
     
     // MARK: - Actions
     
-    /// function that applies damage or healing during a combat phase
+    /// Applies damage or healing during a combat phase
     func updateLife(with action: ActionType) {
         switch action {
         case .damage(value: let value):
@@ -75,7 +75,7 @@ final class Character {
             }
         }
     }
-    /// function who permit to replace character weapon with the random weapon
+    /// Permit to replace character weapon with the random weapon
     func updateWeapon(with weapon: Weapon) {
         self.weapon = weapon
     }

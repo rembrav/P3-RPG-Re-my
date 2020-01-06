@@ -5,7 +5,7 @@
 
 import Foundation
 
-/// class Chest : random weapon appears when player after chosing his fighter
+/// class Chest : random weapon appears when player finish to choose his fighter or healer
 final class Chest {
     static func generateRandomWeapon() -> Weapon? {
         let weapons = [Weapon(type: .bomb),

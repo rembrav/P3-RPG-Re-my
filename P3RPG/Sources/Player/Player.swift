@@ -20,12 +20,13 @@ final class Player {
     }
     
     // MARK: - Actions
-    /// functions presents teams during game
+    /// Describe each team after characters selection when building teams is over
     func teamPresentation() {
         team.forEach { (character) in
             print("You have a hero named",character.name.uppercased(),"who is a", character.type,"armed by a", character.weapon.name.uppercased())
         }
     }
+    /// Describe each team after party
     func endTeamsDescription() {
         print("Your team statistics are:\n")
         team.forEach { (character) in
