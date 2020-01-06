@@ -5,7 +5,7 @@
 
 import Foundation
 
-// Enumeration of different Weapon Type:
+/// Enumeration of different Weapon Type:
 
 enum WeaponType {
     case bomb
@@ -13,7 +13,7 @@ enum WeaponType {
     case knife
     case syringe
 }
-// creation extension for having String use of different weapons case
+/// creation extension for having String use of different weapons case
 extension WeaponType {
     var stringValue: String {
         switch self {
@@ -28,7 +28,7 @@ extension WeaponType {
         }
     }
 }
-// enum to define action of weapon
+/// enum to define action of weapon
 enum ActionType {
     case damage(value: Int)
     case heal(value: Int)

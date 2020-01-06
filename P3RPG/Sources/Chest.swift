@@ -4,7 +4,8 @@
 //  Copyright © 2019 RPELG. All rights reserved.
 
 import Foundation
-// class Chest : random weapon appears when player is gonna to choose his fighter
+
+/// class Chest : random weapon appears when player after chosing his fighter
 final class Chest {
     static func generateRandomWeapon() -> Weapon? {
         let weapons = [Weapon(type: .bomb),

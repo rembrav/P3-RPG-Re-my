@@ -16,19 +16,19 @@ final class Character {
     private(set) var lifePoints: Int
     private(set) var maxLifePoints: Int
     
-    // computed property to check if character is Alive means lifepoints not nil
+    /// computed property to check if character is Alive means lifepoints not nil
     var isAlive: Bool {
         return lifePoints > 0
     }
-    // computed property to describe character
+    /// computed property to describe character
     var description: String {
         return "The \(self.type) named \(self.name.uppercased()) armed with \(self.weapon.name.uppercased()) \(self.weapon.action) \(self._isAlive)"
     }
-    // computed property to describe character after fight
+    /// computed property to describe character after fight
     var descriptionAfterFight: String {
         return "\(self.type) named \(self.name.uppercased()) \(self._isAlive)"
     }
-    // computed property with ternary operator to check if character is alive or dead
+    /// computed property with ternary operator to check if character is alive or dead
     private var _isAlive: String {
         return isAlive ? "has \(lifePoints) lifePoints" : "is ☠️ DEAD 💀"
     }
@@ -58,7 +58,7 @@ final class Character {
     
     // MARK: - Actions
     
-    // function that applies damage or healing during a combat phase
+    /// function that applies damage or healing during a combat phase
     func updateLife(with action: ActionType) {
         switch action {
         case .damage(value: let value):
@@ -75,7 +75,7 @@ final class Character {
             }
         }
     }
-    // function who permit to replace character weapon with the random weapon
+    /// function who permit to replace character weapon with the random weapon
     func updateWeapon(with weapon: Weapon) {
         self.weapon = weapon
     }

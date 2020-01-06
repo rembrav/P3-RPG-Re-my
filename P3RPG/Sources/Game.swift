@@ -15,7 +15,7 @@ final class Game {
     
     // MARK: - Start
     
-    // main progress function of the Game load main functions
+    /// main progress function of the Game load main functions
     func start() {
         print("------------------------------------------------------------")
         print("\n\nWelcome into this New Fighting Game !!!!🥇💥☠️⚔️🏆🦠👊🎁💣\n\n")
@@ -28,7 +28,7 @@ final class Game {
     
     // MARK: - Private
     
-    // loop function create player while count players inferior maxplayers game by team
+    /// loop function create player while count players inferior maxplayers game by team
     private func settings() {
         repeat {
             print("\n\n👋 NICE TO WELCOME YOU NEW PLAYER! 👋\n\n")
@@ -42,7 +42,7 @@ final class Game {
         } while players.count < maxPlayers
         printPlayersDescription()
     }
-    // central function with loop as long as 2 conditions are not reached : no character alive and not therapist character
+    /// central function with loop as long as 2 conditions are not reached : no character alive and not therapist character
     private func play() {
         repeat {
             let player1 = players[0]
@@ -74,16 +74,16 @@ final class Game {
             players.swapAt(0, 1)
         } while !players.contains(where: { !$0.team.contains(where: { $0.isAlive && $0.type != .therapist }) })
     }
-    // function display winner, stats, and restart game
+    /// function display winner, stats, and restart game
     private func end() {
         print ("💪🏆🥇 Congratulations \(declareWinner()) you are the WINNER !!! 👏🍾")
-        rounds()
-        choicePlayOrNotAgain()
+        displayRounds()
+        choosePlayOrStats()
         start()
     }
     
     // MARK: - Helpers
-    // function write and check names for players and characters
+    /// function write and check names for players and characters
     func createName() -> String {
         var name = ""
         repeat {
@@ -98,7 +98,7 @@ final class Game {
         uniqueNames.append(name)
         return name
     }
-    // function creation team for the two palyers
+    /// function creation team for the two palyers
     func createTeam() -> [Character] {
         var teamCharacters: [Character] = []
         var numbChar = 3
@@ -132,7 +132,7 @@ final class Game {
         } while teamCharacters.count < maxCharacters
         return teamCharacters
     }
-    // display function of the teams of the two players when their build is finished
+    /// Display function of the teams of the two players when their build is finished
     func printPlayersDescription() {
         print("\n---------------------------------------------------------------------------------------------\n")
         print("\n\nGood Job! we can show you now the players with their team :\n")
@@ -141,7 +141,7 @@ final class Game {
             player.teamPresentation()
         }
     }
-    // function to select character for fighting
+    /// Function to select character for fighting
     func selectCharacter(from team: [Character]) -> Character {
         var character: Character! = nil
         print("To choose, enter a number between 0 and \((team.count)-1):\n")
@@ -160,7 +160,7 @@ final class Game {
         } while character == nil
         return character
     }
-    // function to declare the winner
+    /// function to declare the winner
     func declareWinner()-> String {
         var winnerName = ""
         let player1 = players[0]
@@ -168,25 +168,25 @@ final class Game {
         if player1.team.contains(where: { $0.isAlive && $0.type != .therapist }) {
             winnerName = player1.name.uppercased()
         }
-        else {winnerName = player2.name.uppercased() }
+        else { winnerName = player2.name.uppercased() }
         return winnerName
     }
-    // function to display rounds
-    func rounds() {
+    /// function to display rounds
+    func displayRounds() {
         print("          👊 You WIN the Game in \(round) rounds 👊")
     }
-    // function to display stats of last party
+    /// function to display stats of last party
     func endTeamsStats() {
         let player1 = players[0]
         let player2 = players[1]
-        declareWinner() == player1.name.uppercased() ? print("\n\nPlayer: \(player1.name.uppercased()) the winner 🏆 \n") : print ("\n\nPlayer: \(player1.name.uppercased()) the Looser 😭\n")
+        declareWinner() == player1.name.uppercased() ? print("\n\nPlayer: \(player1.name.uppercased()) the Winner 🏆 \n") : print ("\n\nPlayer: \(player1.name.uppercased()) the Looser 😭\n")
         player1.endTeamsDescription()
-        declareWinner() == player2.name.uppercased() ? print("\n\nPlayer: \(player2.name.uppercased()) the winner 🏆 \n") : print ("\n\nPlayer: \(player2.name.uppercased()) the Looser 😭\n")
+        declareWinner() == player2.name.uppercased() ? print("\n\nPlayer: \(player2.name.uppercased()) the Winner 🏆 \n") : print ("\n\nPlayer: \(player2.name.uppercased()) the Looser 😭\n")
         player2.endTeamsDescription()
-        choicePlayOrNotAgain()
+        choosePlayOrStats()
     }
-    // function to permit choice between play again or show stats
-    func choicePlayOrNotAgain() {
+    /// function to permit choice between play again or show stats
+    func choosePlayOrStats() {
         let player1 = players[0]
         let player2 = players[1]
         print("\nIf you want to:\nPlay Again: Press 1\nShow Stats about last party: Press 2")
@@ -202,7 +202,7 @@ final class Game {
             case "2":
                 endTeamsStats()
             default: print("\n⛔️Sorry you have to choose one of two choices\n")
-                choicePlayOrNotAgain()
+                choosePlayOrStats()
             }
         }
     }
