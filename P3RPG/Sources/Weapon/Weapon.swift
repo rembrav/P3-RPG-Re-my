@@ -28,7 +28,7 @@ final class Weapon {
             self.action = .heal(value: 20)
         }
     }
-    /// function who verify if random weapon is compatible with character selected
+    /// Function who verify if random weapon is compatible with character selected
     func isCompatible(with type: CharacterType) -> Bool {
         switch self.action {
         case .damage:

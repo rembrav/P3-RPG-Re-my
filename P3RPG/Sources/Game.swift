@@ -11,7 +11,7 @@ final class Game {
     private let maxCharacters = 3
     private var players: [Player] = []
     private var uniqueNames: [String] = []
-    var round = 0
+    private var round = 0
     
     // MARK: - Start
     
@@ -27,8 +27,9 @@ final class Game {
     }
     
     // MARK: - Private
+    /// can't call private functions from main file
     
-    /// Loop function create player while count players inferior maxplayers game by team
+    /// Loop function create player in giving him a name and a team while player's count is inferior maxplayers by team
     private func settings() {
         repeat {
             print("\n\n👋 NICE TO WELCOME YOU NEW PLAYER! 👋\n\n")
@@ -50,12 +51,10 @@ final class Game {
             print("\n\n\n\n---------It's time to fight--------- 🤺🤺💥\n")
             print("\n🥇 Please \(player1.name.uppercased()) select a character in your team to Attack : 🥇\n\n")
             let fighterChosen = selectCharacter(from: player1.team)
-            
             if let randomWeapon = Chest.generateRandomWeapon(), randomWeapon.isCompatible(with: fighterChosen.type) {
                 print("🎁 You are Lucky a Chest with a Random Weapon will appear, maybe it's gonna Help You...🎁\n")
                 print("The random Weapon that you have now is \(randomWeapon.name) with \(randomWeapon.action) \n")
                 print("This \(randomWeapon.name) replace the \(fighterChosen.weapon.name) weapon with \(fighterChosen.weapon.action) that \(fighterChosen.name.uppercased()) the \(fighterChosen.type) had!\n\n\n")
-                fighterChosen.updateWeapon(with: randomWeapon)
             }
             var targetedCharacter: Character!
             if fighterChosen.type == .therapist{
@@ -68,7 +67,7 @@ final class Game {
             }
             print(targetedCharacter.description)
             fighterChosen.type == .therapist ? print("\n\nthe character is being treated...🧬🦠\n--------🚑🚑🚑💪💪💪--------\n\n"):
-            print("\n\n-----Characters are Fighting------\n\n---------⚔️🤺🔪💣💥😱☠️-------------\n\n")
+                print("\n\n-----Characters are Fighting------\n\n---------⚔️🤺🔪💣💥😱☠️-------------\n\n")
             targetedCharacter.updateLife(with: fighterChosen.weapon.action)
             print("The round ended the \(targetedCharacter.descriptionAfterFight)\n\n\n")
             round+=1
@@ -172,7 +171,7 @@ final class Game {
         else { winnerName = player2.name.uppercased() }
         return winnerName
     }
-    /// Display rounds
+    /// Display rounds of the last party
     func displayRounds() {
         print("          👊 You WIN the Game in \(round) rounds 👊")
     }
