@@ -136,9 +136,9 @@ final class Game {
     func printPlayersDescription() {
         print("\n---------------------------------------------------------------------------------------------\n")
         print("\n\nGood Job! we can show you now the players with their team :\n")
-        players.forEach {(player) in
-            print("\nPlayer",player.name.uppercased(),":\n")
-            player.teamPresentation()
+        players.forEach {
+            print("\nPlayer \($0.name.uppercased()) :\n")
+            $0.teamPresentation()
         }
     }
     /// Select character from team
