@@ -67,7 +67,7 @@ final class Game {
             }
             print(targetedCharacter.description)
             fighterChosen.type == .therapist ? print("\n\nthe character is being treated...🧬🦠\n--------🚑🚑🚑💪💪💪--------\n\n"):
-                print("\n\n-----Characters are Fighting------\n\n---------⚔️🤺🔪💣💥😱☠️-------------\n\n")
+                print("\n\n-----Characters are Fighting---------\n\n---------⚔️🤺🔪💣💥😱☠️-------------\n\n")
             targetedCharacter.updateLife(with: fighterChosen.weapon.action)
             print("The round ended the \(targetedCharacter.descriptionAfterFight)\n\n\n")
             round+=1
@@ -149,7 +149,7 @@ final class Game {
             print ("\($0):\n \($1.description) \n")
         }
         repeat {
-            print("Be carrefull you have to choose a character ALIVE:")
+            print("Be careful you have to choose a character ALIVE:")
             if let stringChoice = readLine(), let index = Int(stringChoice), index <= team.count {
                 let selectedCharacter = team[index]
                 if selectedCharacter.isAlive {

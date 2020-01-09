@@ -22,21 +22,16 @@ final class Player {
     // MARK: - Actions
     /// Describe each team after characters selection when building teams is over
     func teamPresentation() {
-        team.forEach { (character) in
-            print("You have a hero named",character.name.uppercased(),"who is a", character.type,"armed by a", character.weapon.name.uppercased())
+        team.forEach {
+            print("You have a hero named \($0.name.uppercased()) who is a \($0.type) armed by a \($0.weapon.name.uppercased())")
         }
     }
     /// Describe each team after party
     func endTeamsDescription() {
         print("Your team statistics are:\n")
-        team.forEach { (character) in
-            if character.type != .therapist {
-                print("Your hero named",character.name.uppercased(),"who is a", character.type,"armed by a", character.weapon.name.uppercased(),"with",character.lifePoints,"lifepoints")
-            }
-            else {
-                print("Your hero named",character.name.uppercased(),"who is a", character.type,"armed by a", character.weapon.name.uppercased(),"with",character.lifePoints,"lifepoints but can't ATTACK")
-            }
-            
+        team.forEach {
+            $0.type != .therapist ? print("Your hero named \($0.name.uppercased()) \($0.type) armed by a  \($0.weapon.name.uppercased()) with \($0.lifePoints) lifepoints") :
+                print("Your hero named \($0.name.uppercased()) who is \($0.type) armed by a  \($0.weapon.name.uppercased()) with \($0.lifePoints) lifepoints but can't ATTACK")
         }
     }
 }
