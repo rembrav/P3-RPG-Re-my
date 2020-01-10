@@ -52,7 +52,7 @@ final class Game {
             print("\n🥇 Please \(player1.name.uppercased()) select a character in your team to Attack : 🥇\n\n")
             let fighterChosen = selectCharacter(from: player1.team)
             
-            /// using chest with random weapon
+            /// using random chest with random weapon
             if let randomWeapon = Chest.generateRandomWeapon(), randomWeapon.isCompatible(with: fighterChosen.type) {
                 print("🎁 You are Lucky a Chest with a Random Weapon will appear, maybe it's gonna Help You...🎁\n")
                 print("The random Weapon that you have now is a \(randomWeapon.name) with \(randomWeapon.action) \n")
@@ -77,6 +77,7 @@ final class Game {
             targetedCharacter.updateLife(with: fighterChosen.weapon.action)
             print("The round ended the \(targetedCharacter.descriptionAfterFight) now !\n\n\n")
             round+=1
+            /// swap 2 players
             players.swapAt(0, 1)
         } while !players.contains(where: { !$0.team.contains(where: { $0.isAlive && $0.type != .therapist }) })
     }
