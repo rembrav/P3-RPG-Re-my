@@ -87,7 +87,7 @@ final class Game {
             print("Oops an error there is, we have to end the game.. ")
             return
         }
-        print ("💪🏆🥇 Congratulations \(winner.name.uppercased()) you are the WINNER !!! 👏🍾")
+        print ("💪🏆🥇 Congratulations \(winner.name.uppercased()) you are the WINNER !!! 🥇👏🍾")
         displayRounds()
         choosePlayOrStats()
         start()
