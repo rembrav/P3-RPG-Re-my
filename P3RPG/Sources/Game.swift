@@ -51,15 +51,21 @@ final class Game {
             print("\n\n\n\n---------It's time to fight--------- 🤺🤺💥\n")
             print("\n🥇 Please \(player1.name.uppercased()) select a character in your team to Attack : 🥇\n\n")
             let fighterChosen = selectCharacter(from: player1.team)
+            
+            /// using chest with random weapon
             if let randomWeapon = Chest.generateRandomWeapon(), randomWeapon.isCompatible(with: fighterChosen.type) {
                 print("🎁 You are Lucky a Chest with a Random Weapon will appear, maybe it's gonna Help You...🎁\n")
-                print("The random Weapon that you have now is \(randomWeapon.name) with \(randomWeapon.action) \n")
+                print("The random Weapon that you have now is a \(randomWeapon.name) with \(randomWeapon.action) \n")
                 print("This \(randomWeapon.name) replace the \(fighterChosen.weapon.name) weapon with \(fighterChosen.weapon.action) that \(fighterChosen.name.uppercased()) the \(fighterChosen.type) had!\n\n\n")
+                fighterChosen.updateWeapon(with: randomWeapon)
             }
+            /// healing action when player choose a therapist
             var targetedCharacter: Character!
-            if fighterChosen.type == .therapist{
-                print("💊You are going to heal a character in your team💉\n\n")
+            if fighterChosen.type == .therapist {
+                print("\n💊You are going to heal a character in your team💉\n\n\n")
                 targetedCharacter = selectCharacter(from: player1.team)
+                while targetedCharacter.type == .therapist { print("⛔️ Sorry you can't choose a therapist to receive healing , please choose another one character 😉\n\n\n")
+                    targetedCharacter = selectCharacter(from: player1.team)}
             } else {
                 print("\n🥈 Please \(player1.name.uppercased()) select a character in \(player2.name.uppercased()) team to choose the Defender : 🥈\n\n")
                 targetedCharacter = selectCharacter(from: player2.team)
@@ -69,14 +75,18 @@ final class Game {
             fighterChosen.type == .therapist ? print("\n\nthe character is being treated...🧬🦠\n--------🚑🚑🚑💪💪💪--------\n\n"):
                 print("\n\n-----Characters are Fighting---------\n\n---------⚔️🤺🔪💣💥😱☠️-------------\n\n")
             targetedCharacter.updateLife(with: fighterChosen.weapon.action)
-            print("The round ended the \(targetedCharacter.descriptionAfterFight)\n\n\n")
+            print("The round ended the \(targetedCharacter.descriptionAfterFight) now !\n\n\n")
             round+=1
             players.swapAt(0, 1)
         } while !players.contains(where: { !$0.team.contains(where: { $0.isAlive && $0.type != .therapist }) })
     }
     /// Display winner, stats, and restart game
     private func end() {
-        print ("💪🏆🥇 Congratulations \(declareWinner()) you are the WINNER !!! 👏🍾")
+        guard let winner = declareWinnerAndLooser(in: players)?.winner else {
+            print("Oops an error there is, we have to end the game.. ")
+            return
+        }
+        print ("💪🏆🥇 Congratulations \(winner.name.uppercased()) you are the WINNER !!! 👏🍾")
         displayRounds()
         choosePlayOrStats()
         start()
@@ -124,7 +134,7 @@ final class Game {
                     teamCharacters.append(character)
                     numbChar -= 1
                     print("\n\nWelcome \(name.uppercased())")
-                    print("\nYou have now a \(type) in your Team!!!\n\n\n")
+                    print("\nYou just added a \(type) to your Team!!!\n\n\n")
                 } else {
                     print("\n⛔️Sorry but you have already chosen this character type! they must all be different⛔️\n\n")
                 }
@@ -153,42 +163,42 @@ final class Game {
             if let stringChoice = readLine(), let index = Int(stringChoice), index <= team.count {
                 let selectedCharacter = team[index]
                 if selectedCharacter.isAlive {
-                    print("\n✅ You've chosen \(selectedCharacter.type)\n\n")
+                    print("\n✅ You've chosen a \(selectedCharacter.type)\n\n")
                     character = selectedCharacter
                 }
             }
         } while character == nil
         return character
     }
+    
     /// Declare the winner
-    func declareWinner()-> String {
-        var winnerName = ""
-        let player1 = players[0]
-        let player2 = players[1]
-        if player1.team.contains(where: { $0.isAlive && $0.type != .therapist }) {
-            winnerName = player1.name.uppercased()
-        }
-        else { winnerName = player2.name.uppercased() }
-        return winnerName
+    func declareWinnerAndLooser(in players: [Player]) -> (winner: Player, looser: Player)? {
+        var players = players
+        guard players.count <= maxPlayers else { return nil }
+        guard let winner = players.first(where: { $0.team.contains(where: { $0.isAlive && $0.type != .therapist }) }) else { return nil }
+        players = players.filter { $0 == winner }
+        guard !players.isEmpty, let looser = players.first else { return nil }
+        return (winner, looser)
     }
+    
     /// Display rounds of the last party
     func displayRounds() {
         print("          👊 You WIN the Game in \(round) rounds 👊")
     }
     /// Display stats of last party
     func endTeamsStats() {
-        let player1 = players[0]
-        let player2 = players[1]
-        declareWinner() == player1.name.uppercased() ? print("\n\nPlayer: \(player1.name.uppercased()) the Winner 🏆 \n") : print ("\n\nPlayer: \(player1.name.uppercased()) the Looser 😭\n")
-        player1.endTeamsDescription()
-        declareWinner() == player2.name.uppercased() ? print("\n\nPlayer: \(player2.name.uppercased()) the Winner 🏆 \n") : print ("\n\nPlayer: \(player2.name.uppercased()) the Looser 😭\n")
-        player2.endTeamsDescription()
+        guard let winner = declareWinnerAndLooser(in: players)?.winner, let looser = declareWinnerAndLooser(in: players)?.looser else {
+            print("fatal error 404 ...")
+            return
+        }
+        print("\n\nPlayer: \(winner.name.uppercased()) the Winner 🏆 \n")
+        winner.endTeamsDescription()
+        print ("\n\nPlayer: \(looser.name.uppercased()) the Looser 😭\n")
+        looser.endTeamsDescription()
         choosePlayOrStats()
     }
     /// function to permit choice between play again or show stats
     func choosePlayOrStats() {
-        let player1 = players[0]
-        let player2 = players[1]
         print("\nIf you want to:\nPlay Again: Press 1\nShow Stats about last party: Press 2")
         if let choice = readLine() {
             switch choice {
@@ -196,13 +206,11 @@ final class Game {
                 players.removeAll()
                 uniqueNames.removeAll()
                 round = 0
-                player1.team.removeAll()
-                player2.team.removeAll()
                 start()
             case "2":
                 endTeamsStats()
             default: print("\n⛔️Sorry you have to choose one of two choices\n")
-                choosePlayOrStats()
+            choosePlayOrStats()
             }
         }
     }

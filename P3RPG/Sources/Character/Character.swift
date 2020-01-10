@@ -80,3 +80,9 @@ final class Character {
         self.weapon = weapon
     }
 }
+
+extension Character: Equatable {
+    static func == (lhs: Character, rhs: Character) -> Bool {
+        return String(describing: lhs) ==  String(describing: rhs)
+    }
+}
