@@ -15,7 +15,7 @@ final class Game {
     
     // MARK: - Start
     
-    /// Main progress function of the Game load main functions
+    /// Main public function of Game class who loads key functions
     func start() {
         print("------------------------------------------------------------")
         print("\n\nWelcome into this New Fighting Game !!!!🥇💥☠️⚔️🏆🦠👊🎁💣\n\n")
@@ -29,15 +29,14 @@ final class Game {
     // MARK: - Private
     /// can't call private functions from main file
     
-    /// Loop function create player in giving him a name and a team while player's count is inferior maxplayers by team
+    /// Loop function create player in giving him a name and a team while player's count is inferior maxplayers 
     private func settings() {
         repeat {
             print("\n\n👋 NICE TO WELCOME YOU NEW PLAYER! 👋\n\n")
             let name = createName()
             print("\n\nWelcome \(name.uppercased())")
             let team = createTeam()
-            let player = Player(name: name,
-                                team: team)
+            let player = Player(name: name,team: team)
             players.append(player)
             
         } while players.count < maxPlayers
@@ -52,14 +51,14 @@ final class Game {
             print("\n🥇 Please \(player1.name.uppercased()) select a character in your team to Attack : 🥇\n\n")
             let fighterChosen = selectCharacter(from: player1.team)
             
-            /// using random chest with random weapon
+            // using random chest with random weapon
             if let randomWeapon = Chest.generateRandomWeapon(), randomWeapon.isCompatible(with: fighterChosen.type) {
                 print("🎁 You are Lucky a Chest with a Random Weapon will appear, maybe it's gonna Help You...🎁\n")
                 print("The random Weapon that you have now is a \(randomWeapon.name) with \(randomWeapon.action) \n")
                 print("This \(randomWeapon.name) replace the \(fighterChosen.weapon.name) weapon with \(fighterChosen.weapon.action) that \(fighterChosen.name.uppercased()) the \(fighterChosen.type) had!\n\n\n")
                 fighterChosen.updateWeapon(with: randomWeapon)
             }
-            /// healing action when player choose a therapist
+            // healing conditions when player choose a therapist
             var targetedCharacter: Character!
             if fighterChosen.type == .therapist {
                 print("\n💊You are going to heal a character in your team💉\n\n\n")
@@ -72,18 +71,19 @@ final class Game {
                 print("\n\n\n\(fighterChosen.description) is going to attack the \(targetedCharacter.name.uppercased()) target :\n")
             }
             print(targetedCharacter.description)
+            // action of fight or heal
             fighterChosen.type == .therapist ? print("\n\nthe character is being treated...🧬🦠\n--------🚑🚑🚑💪💪💪--------\n\n"):
                 print("\n\n-----Characters are Fighting---------\n\n---------⚔️🤺🔪💣💥😱☠️-------------\n\n")
             targetedCharacter.updateLife(with: fighterChosen.weapon.action)
             print("The round ended the \(targetedCharacter.descriptionAfterFight) now !\n\n\n")
             round+=1
-            /// swap 2 players
+            // swap 2 players
             players.swapAt(0, 1)
         } while !players.contains(where: { !$0.team.contains(where: { $0.isAlive && $0.type != .therapist }) })
     }
     /// Display winner, stats, and restart game
     private func end() {
-        guard let winner = declareWinnerAndLooser(in: players)?.winner else {
+        guard let winner = declareWinnerAndLoser(in: players)?.winner else {
             print("Oops an error there is, we have to end the game.. ")
             return
         }
@@ -94,6 +94,7 @@ final class Game {
     }
     
     // MARK: - Helpers
+    
     /// Write and check names for players and characters
     func createName() -> String {
         var name = ""
@@ -171,31 +172,29 @@ final class Game {
         } while character == nil
         return character
     }
-    
-    /// Declare the winner
-    func declareWinnerAndLooser(in players: [Player]) -> (winner: Player, looser: Player)? {
+    /// Declare the winner and the player remaining the loser
+    func declareWinnerAndLoser(in players: [Player]) -> (winner: Player, loser: Player)? {
         var players = players
         guard players.count <= maxPlayers else { return nil }
         guard let winner = players.first(where: { $0.team.contains(where: { $0.isAlive && $0.type != .therapist }) }) else { return nil }
         players = players.filter { $0 == winner }
-        guard !players.isEmpty, let looser = players.first else { return nil }
-        return (winner, looser)
+        guard !players.isEmpty, let loser = players.first else { return nil }
+        return (winner, loser)
     }
-    
     /// Display rounds of the last party
     func displayRounds() {
         print("          👊 You WIN the Game in \(round) rounds 👊")
     }
     /// Display stats of last party
     func endTeamsStats() {
-        guard let winner = declareWinnerAndLooser(in: players)?.winner, let looser = declareWinnerAndLooser(in: players)?.looser else {
+        guard let winner = declareWinnerAndLoser(in: players)?.winner, let loser = declareWinnerAndLoser(in: players)?.loser else {
             print("fatal error 404 ...")
             return
         }
         print("\n\nPlayer: \(winner.name.uppercased()) the Winner 🏆 \n")
         winner.endTeamsDescription()
-        print ("\n\nPlayer: \(looser.name.uppercased()) the Looser 😭\n")
-        looser.endTeamsDescription()
+        print ("\n\nPlayer: \(loser.name.uppercased()) the Loser 😭\n")
+        loser.endTeamsDescription()
         choosePlayOrStats()
     }
     /// function to permit choice between play again or show stats
