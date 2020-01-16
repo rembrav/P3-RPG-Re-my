@@ -38,7 +38,7 @@ final class Player {
 /// extension to permit to compare two objects : need to make their properties comparable
 extension Player: Equatable {
     static func == (lhs: Player, rhs: Player) -> Bool {
-        return String(describing: lhs) == String(describing: rhs)
+        return String(describing: lhs) == String(describing: rhs) //compare with String the impression of the object : hack 
     }
 }
 

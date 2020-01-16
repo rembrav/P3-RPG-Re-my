@@ -12,7 +12,7 @@ enum WeaponType {
     case knife
     case syringe
 }
-/// creation extension for having String use of different weapons case
+/// creation Extension for having String use of different weapons case
 extension WeaponType {
     var stringValue: String {
         switch self {

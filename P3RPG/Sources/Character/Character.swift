@@ -28,7 +28,7 @@ final class Character {
     var descriptionAfterFight: String {
         return "\(self.type) named \(self.name.uppercased()) \(self._isAlive)"
     }
-    /// computed property with ternary operator to check if character is alive or dead
+    /// computed property with ternary operator to display if character is alive or dead
     private var _isAlive: String {
         return isAlive ? "has \(lifePoints) lifePoints" : "is ☠️ DEAD 💀"
     }
@@ -83,6 +83,6 @@ final class Character {
 /// extension to permit to compare two objects : need to make their properties comparable
 extension Character: Equatable {
     static func == (lhs: Character, rhs: Character) -> Bool {
-        return String(describing: lhs) ==  String(describing: rhs)
+        return String(describing: lhs) ==  String(describing: rhs) //compare the impression of the object : hack
     }
 }
