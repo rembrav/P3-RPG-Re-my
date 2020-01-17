@@ -31,14 +31,14 @@ final class Player {
         print("Your team statistics are:\n")
         team.forEach {
             $0.type != .therapist ? print("Your hero named \($0.name.uppercased()) the \($0.type) armed by a  \($0.weapon.name.uppercased()) with \($0.lifePoints) lifepoints") :
-                print("Your hero named \($0.name.uppercased()) who is \($0.type) armed by a \($0.weapon.name.uppercased()) with \($0.lifePoints) lifepoints but can't ATTACK")
+                print("Your hero named \($0.name.uppercased()) who is \($0.type) armed by a \($0.weapon.name.uppercased()) with  \($0.lifePoints) lifepoints \($0.isAlive ? "but can't ATTACK":"")")
         }
     }
 }
 /// extension to permit to compare two objects : need to make their properties comparable
 extension Player: Equatable {
     static func == (lhs: Player, rhs: Player) -> Bool {
-        return String(describing: lhs) == String(describing: rhs) //compare with String the impression of the object : hack 
+        return String(describing: lhs) == String(describing: rhs) //compare with String the impression of the object : tricks
     }
 }
 

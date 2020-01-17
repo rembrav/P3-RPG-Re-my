@@ -83,6 +83,6 @@ final class Character {
 /// extension to permit to compare two objects : need to make their properties comparable
 extension Character: Equatable {
     static func == (lhs: Character, rhs: Character) -> Bool {
-        return String(describing: lhs) ==  String(describing: rhs) //compare the impression of the object : hack
+        return String(describing: lhs) ==  String(describing: rhs) //compare the impression of the object : tricks
     }
 }
