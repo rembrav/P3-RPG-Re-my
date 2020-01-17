@@ -30,8 +30,8 @@ final class Player {
     func endTeamsDescription() {
         print("Your team statistics are:\n")
         team.forEach {
-            $0.type != .therapist ? print("Your hero named \($0.name.uppercased()) the \($0.type) armed by a  \($0.weapon.name.uppercased()) with \($0.lifePoints) lifepoints") :
-                print("Your hero named \($0.name.uppercased()) who is \($0.type) armed by a \($0.weapon.name.uppercased()) with  \($0.lifePoints) lifepoints \($0.isAlive ? "but can't ATTACK":"")")
+            $0.type != .therapist ? print("Your hero named \($0.name.uppercased()) the \($0.type) armed by a \($0.weapon.name.uppercased()) with \($0.lifePoints) lifepoints") :
+                print("Your hero named \($0.name.uppercased()) who is \($0.type) armed by a \($0.weapon.name.uppercased()) with \($0.lifePoints) lifepoints \($0.isAlive ? "but can't ATTACK":"")")
         }
     }
 }
