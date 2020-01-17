@@ -29,7 +29,7 @@ final class Game {
     // MARK: - Private
     /// can't call private functions from main file
     
-    /// Loop function create player in giving him a name and a team while player's count is inferior maxplayers 
+    /// Loop function create players one by one in giving them a name and a team
     private func settings() {
         repeat {
             print("\n\n👋 NICE TO WELCOME YOU NEW PLAYER! 👋\n\n")
@@ -42,7 +42,7 @@ final class Game {
         } while players.count < maxPlayers
         printPlayersDescription()
     }
-    /// Central function with loop as long as 2 conditions are not reached : no character alive and not therapist character
+    /// Central function with loop as long as 2 conditions are not reached for one team : no character alive or one but a therapist 
     private func play() {
         repeat {
             let player1 = players[0]
