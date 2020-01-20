@@ -131,7 +131,7 @@ final class Game {
                 let name = createName()
                 let character = Character(name: name, type: type)
                 if !teamCharacters.contains(where: { character in
-                    character.type == type // need to make comparable 2 CharacterType : Adding Equatable to enum CharacterType
+                    character.type == type
                 }) {
                     teamCharacters.append(character)
                     numbChar -= 1
@@ -177,7 +177,7 @@ final class Game {
         var players = players
         guard players.count <= maxPlayers else { return nil }
         guard let winner = players.first(where: { $0.team.contains(where: { $0.isAlive && $0.type != .therapist }) }) else { return nil }
-        players = players.filter { $0 == winner } // to compare 2 players: creation extension equatable in Character and Player Class
+        players = players.filter { $0 == winner } // to compare 2 players: creation extension equatable in Player Class
         guard !players.isEmpty, let loser = players.first else { return nil }
         return (winner, loser)
     }

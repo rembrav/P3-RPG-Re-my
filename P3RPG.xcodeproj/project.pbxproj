@@ -55,8 +55,8 @@
 		2F516A0423ACD8640041CA00 /* Character */ = {
 			isa = PBXGroup;
 			children = (
-				2F516A0723ACD8640041CA00 /* CharacterType.swift */,
 				2F516A0A23ACD8640041CA00 /* Character.swift */,
+				2F516A0723ACD8640041CA00 /* CharacterType.swift */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -64,8 +64,8 @@
 		2F516A1123ACD8640041CA00 /* Weapon */ = {
 			isa = PBXGroup;
 			children = (
-				2F516A1723ACD8640041CA00 /* WeaponType.swift */,
 				2F516A1423ACD8640041CA00 /* Weapon.swift */,
+				2F516A1723ACD8640041CA00 /* WeaponType.swift */,
 			);
 			path = Weapon;
 			sourceTree = "<group>";
@@ -75,8 +75,8 @@
 			children = (
 				2F516A1C23ACD8640041CA00 /* Game.swift */,
 				2F516A1E23ACD8640041CA00 /* Chest.swift */,
-				2F516A0423ACD8640041CA00 /* Character */,
 				2F516A1F23ACD8640041CA00 /* Player */,
+				2F516A0423ACD8640041CA00 /* Character */,
 				2F516A1123ACD8640041CA00 /* Weapon */,
 			);
 			path = Sources;

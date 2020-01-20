@@ -6,7 +6,7 @@
 import Foundation
 
 /// Enumeration of different type of characters
-enum CharacterType: Int, Equatable {
+enum CharacterType: Int {
     case giant = 1
     case dwarf
     case ninja
