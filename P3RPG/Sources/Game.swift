@@ -49,7 +49,7 @@ final class Game {
             let player2 = players[1]
             print("\n\n\n\n---------It's time to fight--------- 🤺🤺💥\n")
             print("\n🥇 Please \(player1.name.uppercased()) select a character in your team to Attack : 🥇\n\n")
-            let fighterChosen = selectCharacter(from: player1.team)
+            let fighterChosen = player1.selectCharacter()
             
             // using random chest with random weapon
             if let randomWeapon = Chest.generateRandomWeapon(), randomWeapon.isCompatible(with: fighterChosen.type) {
@@ -62,12 +62,12 @@ final class Game {
             var targetedCharacter: Character!
             if fighterChosen.type == .therapist {
                 print("\n💊You are going to heal a character in your team💉\n\n\n")
-                targetedCharacter = selectCharacter(from: player1.team)
+                targetedCharacter = player1.selectCharacter()
                 while targetedCharacter.type == .therapist { print("⛔️ Sorry you can't choose a therapist to receive healing , please choose another one character 😉\n\n\n")
-                    targetedCharacter = selectCharacter(from: player1.team)}
+                    targetedCharacter = player1.selectCharacter()}
             } else {
                 print("\n🥈 Please \(player1.name.uppercased()) select a character in \(player2.name.uppercased()) team to choose the Defender : 🥈\n\n")
-                targetedCharacter = selectCharacter(from: player2.team)
+                targetedCharacter = player2.selectCharacter()
                 print("\n\n\n\(fighterChosen.description) is going to attack the \(targetedCharacter.name.uppercased()) target :\n")
             }
             print(targetedCharacter.description)
@@ -152,25 +152,6 @@ final class Game {
             print("\nPlayer \($0.name.uppercased()) :\n")
             $0.teamPresentation()
         }
-    }
-    /// Select character from team
-    func selectCharacter(from team: [Character]) -> Character {
-        var character: Character! = nil
-        print("To choose, enter a number between 0 and \((team.count)-1):\n")
-        team.enumerated().forEach {
-            print ("\($0):\n \($1.description) \n")
-        }
-        repeat {
-            print("Be careful you have to choose a character ALIVE:")
-            if let stringChoice = readLine(), let index = Int(stringChoice), index <= team.count {
-                let selectedCharacter = team[index]
-                if selectedCharacter.isAlive {
-                    print("\n✅ You've chosen a \(selectedCharacter.type)\n\n")
-                    character = selectedCharacter
-                }
-            }
-        } while character == nil
-        return character
     }
     /// Declare the winner and the player remaining the loser
     func declareWinnerAndLoser(in players: [Player]) -> (winner: Player, loser: Player)? {

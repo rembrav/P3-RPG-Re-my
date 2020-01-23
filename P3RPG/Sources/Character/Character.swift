@@ -22,14 +22,14 @@ final class Character {
     }
     /// computed property to describe character
     var description: String {
-        return "The \(self.type) named \(self.name.uppercased()) armed with \(self.weapon.name.uppercased()) \(self.weapon.action) \(self._isAlive)"
+        return "The \(self.type) named \(self.name.uppercased()) armed with \(self.weapon.name.uppercased()) \(self.weapon.action) \(self._lifeStatus)"
     }
     /// computed property to describe character after fight
     var descriptionAfterFight: String {
-        return "\(self.type) named \(self.name.uppercased()) \(self._isAlive)"
+        return "\(self.type) named \(self.name.uppercased()) \(self._lifeStatus)"
     }
     /// computed property with ternary operator to display if character is alive or dead
-    private var _isAlive: String {
+    private var _lifeStatus: String {
         return isAlive ? "has \(lifePoints) lifePoints" : "is ☠️ DEAD 💀"
     }
     
